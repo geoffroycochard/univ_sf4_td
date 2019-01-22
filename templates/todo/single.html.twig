@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TODO : {{ todo.title }} - {{ parent() }} {% endblock %}
+
+{% block body %}
+
+<div class="example-wrapper">
+    <h1>{{ todo.title }} ✅</h1>
+    <p>{{ todo.description }}</p>
+    <p><a href="{{ path('todo_list') }}">Retour</a></p>
+</div>
+{% endblock %}

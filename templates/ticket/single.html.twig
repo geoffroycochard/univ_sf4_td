@@ -1,0 +1,8 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+<h1>{{ ticket.title }}</h1>
+<p>{{ ticket.users|join(' | ') }}, Déclaré le {{ ticket.date|date('d m Y à H:i:s') }}</p>
+<p>{{ ticket.description }}</p>
+<p><a href="{{ path('ticket') }}">Retour</a></p>
+{% endblock %}

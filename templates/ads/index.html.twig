@@ -1,0 +1,14 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+	<p>{{ content }}</p>
+	<ul>
+		{% for item in ads %}
+			<li>{{ item.title }} : {{ item.description }}</li>
+		{% endfor %}
+	</ul>
+{% endblock %}
+{% block sidebar %}
+	<h3>{{ adsSidebar.title }}</h3>
+	<p>{{ adsSidebar.description }}</p>
+{% endblock %}

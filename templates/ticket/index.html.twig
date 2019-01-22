@@ -1,0 +1,24 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>title</th>
+                <th>Categorie</th>
+                <th>Users</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ticket in tickets %}
+                <tr>
+                    <td>{{ ticket.title }}</td>
+                    <td>{{ ticket.category.name }}</td>
+                    <td>{{ ticket.users|join(', ') }}</td>
+                    <td><a href="{{ path('ticket_single', {id: ticket.id}) }}">Voir</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+
+    {{ form_start(form, { 'attr' : { 'novalidate': 'novalidate' }}) }}
+    {{ form_row(form.title) }}
+    {{ form_row(form.description) }}
+    {{ form_row(form.date) }}
+    {{ form_row(form.category) }}
+    {{ form_row(form.users) }}
+
+    <p><input type="submit" value="valider" class="btn btn-success"></p>
+
+    {{ form_end(form) }}
+
+{% endblock %}
+{% block sidebar %}
+    <div class="btn-group-vertical">
+        <a href="{{ path('ticket_crud_view', { ticket: form.vars.value.id }) }}" class="btn btn-success">Voir le ticket</a>
+        <a href="{{ path('ticket_crud_index') }}" class="btn btn-success">Retour</a>
+        <a href="{{ path('ticket_crud_delete', { ticket: form.vars.value.id }) }}" class="btn btn-danger">Supprimer</a>
+        <a href="{{ path('ticket_crud_create') }}" class="btn btn-success">Créer un nouveau ticket</a>
+    </div>     
+{% endblock %}

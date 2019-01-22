@@ -1,0 +1,15 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+<h1>{{ ticket.title }}</h1>
+<p>{{ ticket.users|join(' | ') }}, Déclaré le {{ ticket.date|date('d m Y à H:i:s') }}</p>
+<p>{{ ticket.description }}</p>
+{% endblock %}
+{% block sidebar %}
+    <div class="btn-group-vertical">
+        <a href="{{ path('ticket_crud_update', { ticket: ticket.id }) }}" class="btn btn-success">Modifier le ticket</a>
+        <a href="{{ path('ticket_crud_index', { ticket: ticket.id }) }}" class="btn btn-success">Retour</a>
+        <a href="{{ path('ticket_crud_delete', { ticket: ticket.id }) }}" class="btn btn-danger">Supprimer</a>
+        <a href="{{ path('ticket_crud_create') }}" class="btn btn-success">Créer un nouveau ticket</a>
+    </div>   
+{% endblock %}

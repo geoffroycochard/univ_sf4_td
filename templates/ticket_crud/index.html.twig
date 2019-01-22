@@ -1,0 +1,32 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>title</th>
+            <th>Categorie</th>
+            <th>Users</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for ticket in tickets if tickets|length > 0 %}
+            <tr>
+                <td>{{ ticket.id }}</td>
+                <td>{{ ticket.title }}</td>
+                <td>{{ ticket.category.name }}</td>
+                <td>{{ ticket.users|join(', ') }}</td>
+                <td class="btn-group">
+                    <a class="btn btn-secondary" href="{{ path('ticket_crud_view', { ticket: ticket.id }) }}">Voir</a> 
+                    <a class="btn btn-secondary" href="{{ path('ticket_crud_update', { ticket: ticket.id }) }}">Edit</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+{% block sidebar %}
+    <a href="{{ path('ticket_crud_create') }}" class="btn btn-success">Créer un nouveau ticket</a>
+{% endblock %}
