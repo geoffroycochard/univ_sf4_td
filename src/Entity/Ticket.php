@@ -10,6 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TicketRepository")
+ * @ORM\Table(name="univ_ticket")
  * @ORM\HasLifecycleCallbacks()
  */
 class Ticket
@@ -49,6 +50,7 @@ class Ticket
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="tickets", cascade={"persist"})
+     * @ORM\JoinTable(name="univ_ticket_user")
      * @Assert\Count(min="1", max="4", maxMessage="Trop de Users !")
      * @Assert\Valid()
      */

@@ -12,6 +12,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @ORM\Table(name="univ_user")
  * @UniqueEntity("name")
  */
 class User
@@ -31,6 +32,7 @@ class User
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Ticket", mappedBy="users")
+     *
      */
     private $tickets;
 
