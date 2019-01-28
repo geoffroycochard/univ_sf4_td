@@ -5,11 +5,12 @@ namespace App\DataFixtures;
 use App\Entity\Category;
 use App\Entity\Ticket;
 use App\Entity\User;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Faker;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
-class TicketFixtures extends Fixture
+class TicketFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
@@ -51,8 +52,8 @@ class TicketFixtures extends Fixture
     public function getDependencies()
     {
         return array(
-            UserFixtures::class,
-            CategoryFixtures::class
+            CategoryFixtures::class,
+            UserFixtures::class
         );
     }
 

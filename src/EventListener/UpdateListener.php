@@ -30,11 +30,7 @@ class UpdateListener
             return;
         }
 
-
         /** @var Ticket $entity */
-        dump($entity);
-        dump($this->mailer);
-
         $tos = [];
         /** @var User $user */
         foreach ($entity->getUsers() as $user) {
@@ -47,9 +43,5 @@ class UpdateListener
             ->setBody(sprintf('New ticket ID %s', $entity->getId()))
         ;
         $ret = $this->mailer->send($message);
-        dump($ret);
-        die();
-//        $mailer->
-        // ... do something with the Product
     }
 }
