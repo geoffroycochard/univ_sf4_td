@@ -10,6 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TicketRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Ticket
 {
@@ -53,6 +54,23 @@ class Ticket
      */
     private $users;
 
+    /**
+     * @var
+     *
+     * @ORM\Column(name="created_at", type="datetime")
+     */
+    private $createdAt;
+
+    /**
+     * @var
+     *
+     * @ORM\Column(name="updated_at", type="datetime")
+     */
+    private $updatedAt;
+
+    /**
+     * Ticket constructor.
+     */
     public function __construct()
     {
         $this->users = new ArrayCollection();
@@ -135,5 +153,45 @@ class Ticket
         }
 
         return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * @ORM\PrePersist()
+     */
+    public function prePersist()
+    {
+        $this->createdAt = $this->updatedAt = new \DateTime();
+    }
+
+    /**
+     * @ORM\PreUpdate()
+     */
+    public function preUpdate()
+    {
+        $this->updatedAt = new \DateTime();
     }
 }
